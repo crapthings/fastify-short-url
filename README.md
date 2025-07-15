@@ -3,6 +3,14 @@
 - node 22.x
 - mongodb
 
+## ENV
+
+```bash
+PORT=3000 # server port
+MONGO_URL=mongodb://localhost:27017/fastify-short-url # mongodb with dbname
+DOMAIN=http://localhost:3000 # replace to your domain
+```
+
 ## How to
 
 ```bash
@@ -21,5 +29,6 @@ npm run test
 ## Test Get An Url
 
 ```bash
-node run.mjs
+npm run generate # or node run.js
+# http://localhost:3000/U6OM3m8n6vOQ
 ```

@@ -3,7 +3,7 @@ const TARGET_URL = 'https://www.youtube.com/watch?v=RNJCfif1dPY'
 // change this to your own domain or dev server
 const API_BASE = 'http://localhost:3000'
 
-async function createShortUrl () {
+async function createShortUrl() {
   try {
     const response = await fetch(`${API_BASE}/api/v1/short-urls`, {
       method: 'POST',
@@ -20,7 +20,7 @@ async function createShortUrl () {
     }
 
     const result = await response.json()
-    console.log(result.url)
+    console.log(result.shortUrl)
   } catch (error) {
     console.error('failed to create short url:', error.message)
   }
