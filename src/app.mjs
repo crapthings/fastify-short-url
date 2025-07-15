@@ -1,10 +1,10 @@
-// app.js
-import Fastify from 'fastify'
-import { shortUrls } from './mongo.mjs'
-import { nanoid } from 'nanoid'
 import { readFileSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
+import { nanoid } from 'nanoid'
+import Fastify from 'fastify'
+
+import { shortUrls } from './mongo.mjs'
 
 const SHORT_URL_LENGTH = process.env.SHORT_URL_LENGTH || 12
 const DOMAIN = process.env.DOMAIN || 'http://localhost:3000'
@@ -21,7 +21,7 @@ export function build(opts = {}) {
     return { status: 'ok' }
   })
 
-  // 短链接重定向页面
+  // short url redirect page
   fastify.get('/:shortId', async (request, reply) => {
     const shortId = request.params.shortId
 
@@ -33,7 +33,7 @@ export function build(opts = {}) {
 
     let redirectHtml = readFileSync(join(__dirname, 'redirect.html'), 'utf8')
 
-    // 替换模板变量，注意要处理特殊字符
+    // replace template variables, handle special characters
     redirectHtml = redirectHtml
       .replace(/\{\{TARGET_URL\}\}/g, shortUrl.url.replace(/'/g, "\\'"))
       .replace(/\{\{SHORT_ID\}\}/g, shortId)
@@ -42,7 +42,7 @@ export function build(opts = {}) {
     reply.type('text/html').send(redirectHtml)
   })
 
-  // API 创建短链接
+  // API create short url
   fastify.post('/api/v1/short-urls', async (request, reply) => {
     const { url } = request.body
     const shortId = nanoid(SHORT_URL_LENGTH)

@@ -23,4 +23,3 @@ npm run test
 ```bash
 node run.mjs
 ```
-# -fastify-short-url
