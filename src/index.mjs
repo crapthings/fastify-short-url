@@ -1,6 +1,4 @@
-import dotenv from 'dotenv'
-
-dotenv.config()
+import 'dotenv/config'
 
 import { mongoClient } from './mongo.mjs'
 import { build } from './app.mjs'

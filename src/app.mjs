@@ -12,7 +12,7 @@ const DOMAIN = process.env.DOMAIN || 'http://localhost:3000'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-export function build(opts = {}) {
+export function build (opts = {}) {
   const fastify = Fastify({
     logger: opts.logger || false
   })
@@ -45,9 +45,32 @@ export function build(opts = {}) {
   // API create short url
   fastify.post('/api/v1/short-urls', async (request, reply) => {
     const { url } = request.body
+
+    if (!url) {
+      return reply.status(400).send({ error: 'URL is required' })
+    }
+
+    // check if url is string
+    if (typeof url !== 'string') {
+      return reply.status(400).send({ error: 'URL must be a string' })
+    }
+
+    if (!url.startsWith('http')) {
+      return reply.status(400).send({ error: 'URL must start with http' })
+    }
+
     const shortId = nanoid(SHORT_URL_LENGTH)
+
     await shortUrls.insertOne({ _id: shortId, url })
-    return reply.status(201).send({ shortId, domain: DOMAIN, url: `${DOMAIN}/${shortId}` })
+
+    const result = {
+      shortId,
+      domain: DOMAIN,
+      shortUrl: `${DOMAIN}/${shortId}`,
+      url
+    }
+
+    return reply.status(201).send(result)
   })
 
   return fastify

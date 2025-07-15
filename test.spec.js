@@ -41,8 +41,9 @@ describe('Short URL API', () => {
     expect(result.shortId).toBeDefined()
     expect(result.shortId).toHaveLength(12)
     expect(result.domain).toBeDefined()
-    expect(result.url).toBeDefined()
-    expect(result.url).toContain(result.shortId)
+    expect(result.shortUrl).toBeDefined()
+    expect(result.shortUrl).toContain(result.shortId)
+    expect(result.url).toBe(TEST_URL)
   })
 
   it('should return redirect page HTML for valid shortId', async () => {
