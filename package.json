@@ -7,8 +7,9 @@
     "nanoid": "^5.1.5"
   },
   "scripts": {
-    "dev": "nodemon src/index.mjs",
-    "start": "node src/index.mjs",
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
+    "generate": "node run.js",
     "test": "vitest",
     "test:run": "vitest run",
     "test:watch": "vitest watch"

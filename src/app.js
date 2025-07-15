@@ -4,7 +4,7 @@ import { dirname, join } from 'path'
 import { nanoid } from 'nanoid'
 import Fastify from 'fastify'
 
-import { shortUrls } from './mongo.mjs'
+import { shortUrls } from './mongo.js'
 
 const SHORT_URL_LENGTH = process.env.SHORT_URL_LENGTH || 12
 const DOMAIN = process.env.DOMAIN || 'http://localhost:3000'
@@ -12,7 +12,7 @@ const DOMAIN = process.env.DOMAIN || 'http://localhost:3000'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-export function build (opts = {}) {
+export function build(opts = {}) {
   const fastify = Fastify({
     logger: opts.logger || false
   })

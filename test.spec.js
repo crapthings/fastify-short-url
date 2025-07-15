@@ -1,6 +1,6 @@
 // app.test.js
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
-import { build } from './src/app.mjs'
+import { build } from './src/app.js'
 
 const TEST_URL = 'https://www.youtube.com/watch?v=RNJCfif1dPY'
 
