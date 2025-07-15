@@ -12,7 +12,7 @@ const DOMAIN = process.env.DOMAIN || 'http://localhost:3000'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-export function build(opts = {}) {
+export function build (opts = {}) {
   const fastify = Fastify({
     logger: opts.logger || false
   })
@@ -36,8 +36,6 @@ export function build(opts = {}) {
     // replace template variables, handle special characters
     redirectHtml = redirectHtml
       .replace(/\{\{TARGET_URL\}\}/g, shortUrl.url.replace(/'/g, "\\'"))
-      .replace(/\{\{SHORT_ID\}\}/g, shortId)
-      .replace(/\{\{ENCODED_URL\}\}/g, encodeURIComponent(shortUrl.url))
 
     reply.type('text/html').send(redirectHtml)
   })
