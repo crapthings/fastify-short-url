@@ -5,7 +5,7 @@ export default defineConfig({
     include: ['**/*.{test,spec}.{js,mjs,ts}'],
     exclude: [
       '**/node_modules/**',
-      '**/._*' // 排除所有 ._ 开头的文件
+      '**/._*'
     ]
   }
 })

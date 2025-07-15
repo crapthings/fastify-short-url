@@ -1,7 +1,7 @@
 import 'dotenv/config'
 
 import { mongoClient } from './mongo.js'
-import { build } from './app.js'
+import { build } from './server.js'
 
 const PORT = process.env.PORT || 3000
 

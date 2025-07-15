@@ -9,6 +9,7 @@
 PORT=3000 # server port
 MONGO_URL=mongodb://localhost:27017/fastify-short-url # mongodb with dbname
 DOMAIN=http://localhost:3000 # replace to your domain
+SHORT_URL_LENGTH=12 # random id length
 ```
 
 ## How to

@@ -44,6 +44,9 @@ export function build(opts = {}) {
 
   // API create short url
   fastify.post('/api/v1/short-urls', async (request, reply) => {
+    // - [ ] add header bearer token auth
+    // - [ ] add rate limit
+
     const { url } = request.body
 
     if (!url) {
