@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>redirecting...</title>
+</head>
+
+<body>
+  <h1>redirecting...</h1>
+  <p>target url: <span id="targetUrl">{{TARGET_URL}}</span></p>
+  <p><span id="countdown">5</span> seconds later auto redirect</p>
+  <p><a href="{{TARGET_URL}}" id="manualLink">redirect now</a></p>
+
+  <script>
+    const targetUrl = '{{TARGET_URL}}';
+
+    console.log(targetUrl, '{{TARGET_URL}}');
+
+    if (targetUrl && targetUrl === '{{TARGET_URL}}') {
+      let countdown = 5;
+      const countdownElement = document.getElementById('countdown');
+
+      const timer = setInterval(() => {
+        countdown--;
+        countdownElement.textContent = countdown;
+
+        if (countdown <= 0) {
+          clearInterval(timer);
+          window.location.href = targetUrl;
+        }
+      }, 1000);
+
+      document.getElementById('manualLink').addEventListener('click', (e) => {
+        e.preventDefault();
+        clearInterval(timer);
+        window.location.href = targetUrl;
+      });
+    } else {
+      document.getElementById('targetUrl').textContent = 'invalid url';
+      document.getElementById('manualLink').style.display = 'none';
+    }
+  </script>
+</body>
+
+</html>
